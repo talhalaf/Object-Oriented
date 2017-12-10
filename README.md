@@ -13,8 +13,8 @@ Yarden Mizrahi - 311332183 Dor Levi - 203288139
 
 Simply run the program through eclipse and follow the instructions (and syntax!).
 
-# Example (filtering by time)
-
+### Example (filtering by time)
+```
 Select a folder to scan for csv files: 
 >C:\\Users\\Dan\\Desktop\\New folder\\27.10
 Enter path to write the CSV file (with the file's name): 
@@ -34,9 +34,9 @@ Start time:
 End time: 
 >2017:11:12:13:09:42
 Success!
+```
 
-
-# Functions:
+## Functions
 
 # ScannerFunctions:
 
