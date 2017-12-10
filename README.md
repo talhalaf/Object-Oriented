@@ -38,7 +38,7 @@ Success!
 
 ## Functions
 
-# ScannerFunctions:
+### ScannerFunctions:
 
 •	getAllcsvFileListFromFolder: Receives a folder and searches for all the csv files, returns a list with their paths.
 
@@ -54,7 +54,7 @@ Success!
 
 •	run: runs the program.
 
-# Wifi:
+### Wifi:
 
 •	WiFi: Constructor (signal, frequency, id, mac)
 
@@ -62,7 +62,7 @@ Success!
 
 •	toString: Returns the data of the specified Wifi network.
 
-# WiFiLinkedList:
+### WiFiLinkedList:
 
 •	WiFiLinkedList: Constructor (LAT, LON, ALT, Time, ID)
 
@@ -76,7 +76,7 @@ Success!
 
 •	toString: Returns "ID, Lat, Lon, Alt, LLWF".
 
-# Filters:
+### Filters:
 
 •	filtercsvFileByTime: Receives a csv file and filters the lines to be added to the kml file by time. input starting time and end time.
 
@@ -84,7 +84,7 @@ Success!
 
 •	filtercsvFileByID: Receives a csv file and filters it by device ID.
 
-# Kml:
+### Kml:
 
 •	printToKml: Runs through the merged csv file and checks if the same mac address is listed multiple times, if so it adds the network with the strongest signal to the kml file.
 
