@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public class WiFiLinkedList {
 	//private static int ID = 0;
-	LinkedList<WiFi> LLWF;
+	public LinkedList<WiFi> LLWF;
 	private double LAT,LON,ALT;
 	private String Time;
 	private String UID;
