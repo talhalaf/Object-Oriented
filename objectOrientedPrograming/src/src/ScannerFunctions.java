@@ -275,7 +275,7 @@ public class ScannerFunctions{
 	 * @param directoryName directory to collect all csv files from
 	 * @param csvWritePath path to write the merged csv file
 	 */
-	public static void getAllcsvFilesFromFolderAndAddtoOneCSVTable(String directoryName, String csvWritePath)
+	public static LinkedList<WiFiLinkedList> getAllcsvFilesFromFolderAndAddtoOneCSVTable(String directoryName, String csvWritePath)
 	{
 		ArrayList<String> fileList = getAllcsvFileListFromFolder(directoryName);
 		LinkedList<WiFiLinkedList> wifiList = new LinkedList<WiFiLinkedList>();
@@ -288,8 +288,21 @@ public class ScannerFunctions{
 			wifiList.get(i).setWiFiList(result);    
 		}
 		printCSVFromWiFiLinkedList(csvWritePath, wifiList);
+		return wifiList;
 	}
-
+	public static WiFiLinkedList getListBySSID(LinkedList<WiFiLinkedList> wifiList, String SSID){
+		WiFiLinkedList result = new WiFiLinkedList();
+		//FOR - EACH : for each WiFiLinkedList within wifiList
+		for (WiFiLinkedList list : wifiList){
+			//FOR - EACH : for each WiFi within list
+			for (WiFi wifi : list){
+				if (wifi.getSSID().equals(SSID)){
+					result.add(wifi);	
+				}
+			}
+		}
+		return result;
+	}
 	// ***** MAIN PROGRAM *****
 	public static void run()
 	{
