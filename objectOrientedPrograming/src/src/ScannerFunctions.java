@@ -289,7 +289,20 @@ public class ScannerFunctions{
 		}
 		printCSVFromWiFiLinkedList(csvWritePath, wifiList);
 	}
-
+	public static WiFiLinkedList makeListBySSID(String SSID, LinkedList<WiFiLinkedList> wifiList){
+		WiFiLinkedList result = new WiFiLinkedList();
+		//FOR - EACH - for each object within the collection, mean every WiFi list within wifiList.
+		for (WiFiLinkedList list : wifiList){
+			//FOR - EACH - for each WiFi within the wifiList.
+			for (WiFi wifi : list){
+				if (wifi.getSSID().equals(SSID)){
+					result.add(wifi);
+				}
+	
+			}
+		}
+		return result;
+	} 
 	// ***** MAIN PROGRAM *****
 	public static void run()
 	{
