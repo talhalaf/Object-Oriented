@@ -1,0 +1,61 @@
+import java.util.Stack;
+
+public class EvaluateString {
+
+	public static boolean isSuffixOperator(char ch){
+		return ch == '+' || ch == '-';
+	}
+	public static boolean isPrefixOperator(char ch){
+		return ch == '*' || ch == '/';
+	}
+	private static Double calculate(Double num1, Double num2, char operator) {
+		switch (operator){
+			case '*': return num2 * num1;
+			case '/': return num2 / num1;
+			case '+': return num2 + num1;
+			case '-': return num2 - num1;
+		}
+		return 0.0;
+	}
+
+	public static void main(String[] args) {
+		
+		String st = "1+4*(21-6)";
+		Stack<Double> st1;
+		Stack<String> st2;
+		st1 = new Stack<Double>();
+		st2 = new Stack<String>();
+		String number;
+		char ch;
+		
+		for (int i = 0; i < st.length(); i++) {
+			if (st.charAt(i) >= '0' && st.charAt(i) <='9'){                 // Number
+				number = st.charAt(i)+"";
+				ch = st.charAt(i+1);
+				while (ch >= '0' && ch <= '9'){
+					number = number + ch;
+					ch = st.charAt((++i) + 1);
+				}
+				if (!st2.isEmpty() && isPrefixOperator(st2.peek().charAt(0))){
+					st1.push(calculate(st1.pop(),st1.pop(),st2.pop().charAt(0)));
+				} else if (!st2.isEmpty() && isSuffixOperator(st2.peek().charAt(0)) && isSuffixOperator(st.charAt(i+1))){
+					st1.push(calculate(st1.pop(),st1.pop(),st2.pop().charAt(0)));
+				} else {
+					st1.push(Double.parseDouble(number));
+				}
+			}
+			else if (isSuffixOperator(st.charAt(i)) || isPrefixOperator(st.charAt(i)) || st.charAt(i) == '('){ // '+' '-' '*' '/' '('
+				st2.push(st.charAt(i)+"");
+			} else {							// ')'
+				ch = st2.pop().charAt(0);
+				while (ch != '('){
+					st1.push(calculate(st1.pop(),st1.pop(),ch));
+					ch = st2.pop().charAt(0);
+				}
+			}
+		}
+		while (!st2.isEmpty()) st1.push(calculate(st1.pop(),st1.pop(),st2.pop().charAt(0)));
+		System.out.println(st1.pop());
+	}
+
+}
