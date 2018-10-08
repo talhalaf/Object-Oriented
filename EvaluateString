@@ -20,7 +20,7 @@ public class EvaluateString {
 
 	public static void main(String[] args) {
 		
-		String st = "1+4*(21-6)";
+		String st = "(1+4)*2";
 		Stack<Double> st1;
 		Stack<String> st2;
 		st1 = new Stack<Double>();
@@ -31,15 +31,14 @@ public class EvaluateString {
 		for (int i = 0; i < st.length(); i++) {
 			if (st.charAt(i) >= '0' && st.charAt(i) <='9'){                 // Number
 				number = st.charAt(i)+"";
-				ch = st.charAt(i+1);
-				while (ch >= '0' && ch <= '9'){
+				while (i+1 != st.length() && st.charAt(i+1) >= '0' && st.charAt(i+1) <= '9'){
+					ch = st.charAt((++i));
 					number = number + ch;
-					ch = st.charAt((++i) + 1);
 				}
 				if (!st2.isEmpty() && isPrefixOperator(st2.peek().charAt(0))){
-					st1.push(calculate(st1.pop(),st1.pop(),st2.pop().charAt(0)));
+					st1.push(calculate(Double.parseDouble(number),st1.pop(),st2.pop().charAt(0)));
 				} else if (!st2.isEmpty() && isSuffixOperator(st2.peek().charAt(0)) && isSuffixOperator(st.charAt(i+1))){
-					st1.push(calculate(st1.pop(),st1.pop(),st2.pop().charAt(0)));
+					st1.push(calculate(Double.parseDouble(number),st1.pop(),st2.pop().charAt(0)));
 				} else {
 					st1.push(Double.parseDouble(number));
 				}
